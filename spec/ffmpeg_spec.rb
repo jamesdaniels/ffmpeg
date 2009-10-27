@@ -31,6 +31,12 @@ describe "FFMpeg" do
     FFMpegCommand.command("ffmpeg").should eql("ffmpeg -i #{@from_file}")
   end
   
+  it "should raise an exception when given a bad command" do
+    convert '/', :to => '/asdf'
+    
+    lambda { FFMpegCommand.command("ffmpeg").run }.should raise_error(FFMpeg::FFmpegError)
+  end
+  
 end
 
 describe "FFMpeg Main Options" do

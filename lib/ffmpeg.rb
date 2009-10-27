@@ -16,6 +16,9 @@ module FFMpeg
   include AudioOptions
   include MetaData
   
+  class FFmpegError < Exception
+  end
+  
   #
   # When mixed into a class, extend  
   # it with the ClassMethods module
@@ -114,8 +117,12 @@ module FFMpeg
   # Executes FFmpeg with the specified command
   #
   def execute_command(cmd)
-    puts "Executing: #{cmd}}"
-    %x[#{cmd}]
-    puts $?.success?
+    lines = []
+    IO.popen(cmd) do |pipe|
+      pipe.each("\r") do |line|
+        lines << line
+      end
+    end
+    raise FFmpegError, "FFmpeg command (#{cmd}) failed" if $? != 0
   end
 end
