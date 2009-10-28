@@ -118,7 +118,7 @@ module FFMpeg
   #
   def execute_command(cmd)
     lines = []
-    IO.popen(cmd) do |pipe|
+    IO.popen("#{cmd} 2>&1") do |pipe|
       pipe.each("\r") do |line|
         lines << line
       end
