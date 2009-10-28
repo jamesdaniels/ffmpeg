@@ -5,14 +5,14 @@
 
 <html>
 <head>
-  <title>enable_advanced_intra_coding (FFMpeg::VideoAdvancedOptions)</title>
+  <title>b_frame_factor (FFMpeg::VideoAdvancedOptions)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_advanced_options.rb, line 220</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">enable_advanced_intra_coding</span>
-      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;-aic&quot;</span>
+  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_advanced_options.rb, line 97</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">b_frame_factor</span>(<span class="ruby-identifier">factor</span>)
+      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-b_qfactor #{factor}&quot;</span>
     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

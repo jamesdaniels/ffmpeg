@@ -5,14 +5,14 @@
 
 <html>
 <head>
-  <title>dct_algorithm (FFMpeg::VideoAdvancedOptions)</title>
+  <title>video_maximum_quantizer_scale (FFMpeg::VideoAdvancedOptions)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_advanced_options.rb, line 148</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dct_algorithm</span>(<span class="ruby-identifier">algorithm</span>)
-      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-dct_algo #{algorithm}&quot;</span>
+  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_advanced_options.rb, line 39</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">video_maximum_quantizer_scale</span>(<span class="ruby-identifier">scale</span>)
+      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-qmax #{scale}&quot;</span>
     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

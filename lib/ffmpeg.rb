@@ -24,7 +24,14 @@ module FFMpeg
   class << self
     
     #
-    # while_converting block
+    # Allows you to specify a block that is called everytime FFMpeg spits out something on the
+    # command line
+    #
+    #  convert "file1.ext", :to => "file2.ext" do
+    #    while_converting do
+    #      puts current_eta
+    #    end
+    #  end
     #
     def while_converting(&block)
       @while_block = block

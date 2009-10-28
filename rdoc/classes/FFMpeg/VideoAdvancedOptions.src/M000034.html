@@ -5,14 +5,14 @@
 
 <html>
 <head>
-  <title>error_resilience (FFMpeg::VideoAdvancedOptions)</title>
+  <title>video_quantizer_scale_blur (FFMpeg::VideoAdvancedOptions)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_advanced_options.rb, line 175</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">error_resilience</span>(<span class="ruby-identifier">number</span>)
-      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-er #{number}&quot;</span>
+  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_advanced_options.rb, line 49</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">video_quantizer_scale_blur</span>(<span class="ruby-identifier">blur</span>)
+      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-qblur #{blur}&quot;</span>
     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

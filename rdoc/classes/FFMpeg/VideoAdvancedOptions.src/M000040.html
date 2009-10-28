@@ -5,14 +5,14 @@
 
 <html>
 <head>
-  <title>strictness (FFMpeg::VideoAdvancedOptions)</title>
+  <title>initial_complexity (FFMpeg::VideoAdvancedOptions)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_advanced_options.rb, line 215</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">strictness</span>(<span class="ruby-identifier">strictness</span>)
-      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-strict #{strictness}&quot;</span>
+  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_advanced_options.rb, line 92</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initial_complexity</span>(<span class="ruby-identifier">complexity</span>)
+      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-rc_init_cplx #{complexity}&quot;</span>
     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

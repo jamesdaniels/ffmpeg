@@ -5,14 +5,14 @@
 
 <html>
 <head>
-  <title>video_maximum_bitrate (FFMpeg::VideoOptions)</title>
+  <title>resolution (FFMpeg::VideoOptions)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_options.rb, line 148</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">video_maximum_bitrate</span>(<span class="ruby-identifier">bitrate</span>)
-      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-maxrate #{bitrate}&quot;</span>
+  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_options.rb, line 64</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">resolution</span>(<span class="ruby-identifier">resolution</span>)
+      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-s #{resolution}&quot;</span>
     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

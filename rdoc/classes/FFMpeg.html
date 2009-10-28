@@ -75,6 +75,10 @@
                 lib/ffmpeg/meta_data.rb
                 </a>
         <br />
+                <a href="../files/lib/ffmpeg/output_reading_rb.html">
+                lib/ffmpeg/output_reading.rb
+                </a>
+        <br />
                 <a href="../files/lib/ffmpeg/video_advanced_options_rb.html">
                 lib/ffmpeg/video_advanced_options.rb
                 </a>
@@ -108,10 +112,17 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000006">convert</a>&nbsp;&nbsp;
-      <a href="#M000007">ffmpeg_path</a>&nbsp;&nbsp;
-      <a href="#M000005">included</a>&nbsp;&nbsp;
-      <a href="#M000008">run</a>&nbsp;&nbsp;
+      <a href="#M000009">clear_log</a>&nbsp;&nbsp;
+      <a href="#M000013">convert</a>&nbsp;&nbsp;
+      <a href="#M000014">ffmpeg_path</a>&nbsp;&nbsp;
+      <a href="#M000012">included</a>&nbsp;&nbsp;
+      <a href="#M000008">log</a>&nbsp;&nbsp;
+      <a href="#M000007">log_output</a>&nbsp;&nbsp;
+      <a href="#M000011">new_duration</a>&nbsp;&nbsp;
+      <a href="#M000015">run</a>&nbsp;&nbsp;
+      <a href="#M000010">set_duration_override</a>&nbsp;&nbsp;
+      <a href="#M000006">while_block</a>&nbsp;&nbsp;
+      <a href="#M000005">while_converting</a>&nbsp;&nbsp;
       </div>
     </div>
 
@@ -129,6 +140,7 @@
         <span class="include-name"><a href="FFMpeg/VideoAdvancedOptions.html">VideoAdvancedOptions</a></span>
         <span class="include-name"><a href="FFMpeg/AudioOptions.html">AudioOptions</a></span>
         <span class="include-name"><a href="FFMpeg/MetaData.html">MetaData</a></span>
+        <span class="include-name"><a href="FFMpeg/OutputReading.html">OutputReading</a></span>
       </div>
     </div>
 
@@ -142,8 +154,10 @@ Module <a href="FFMpeg/ClassMethods.html" class="link">FFMpeg::ClassMethods</a><
 Module <a href="FFMpeg/HelperMethods.html" class="link">FFMpeg::HelperMethods</a><br />
 Module <a href="FFMpeg/MainOptions.html" class="link">FFMpeg::MainOptions</a><br />
 Module <a href="FFMpeg/MetaData.html" class="link">FFMpeg::MetaData</a><br />
+Module <a href="FFMpeg/OutputReading.html" class="link">FFMpeg::OutputReading</a><br />
 Module <a href="FFMpeg/VideoAdvancedOptions.html" class="link">FFMpeg::VideoAdvancedOptions</a><br />
 Module <a href="FFMpeg/VideoOptions.html" class="link">FFMpeg::VideoOptions</a><br />
+Class <a href="FFMpeg/FFmpegError.html" class="link">FFMpeg::FFmpegError</a><br />
 
     </div>
 
@@ -157,12 +171,29 @@ Module <a href="FFMpeg/VideoOptions.html" class="link">FFMpeg::VideoOptions</a><
     <div id="methods">
       <h3 class="section-bar">Public Class methods</h3>
 
-      <div id="method-M000005" class="method-detail">
-        <a name="M000005"></a>
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
 
         <div class="method-heading">
-          <a href="FFMpeg.src/M000005.html" target="Code" class="method-signature"
-            onclick="popupCode('FFMpeg.src/M000005.html');return false;">
+          <a href="FFMpeg.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('FFMpeg.src/M000009.html');return false;">
+          <span class="method-name">clear_log</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Clear the command line <a href="FFMpeg.html#M000008">log</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="FFMpeg.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('FFMpeg.src/M000012.html');return false;">
           <span class="method-name">included</span><span class="method-args">(klass)</span>
           </a>
         </div>
@@ -175,7 +206,76 @@ href="FFMpeg/ClassMethods.html">ClassMethods</a> module
         </div>
       </div>
 
-      <h3 class="section-bar">Public Instance methods</h3>
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="FFMpeg.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('FFMpeg.src/M000008.html');return false;">
+          <span class="method-name">log</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the command line <a href="FFMpeg.html#M000008">log</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="FFMpeg.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('FFMpeg.src/M000007.html');return false;">
+          <span class="method-name">log_output</span><span class="method-args">(output)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Log command line output for review
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="FFMpeg.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('FFMpeg.src/M000011.html');return false;">
+          <span class="method-name">new_duration</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The new duration put forth by <a
+href="FFMpeg.html#M000010">set_duration_override</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="FFMpeg.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('FFMpeg.src/M000010.html');return false;">
+          <span class="method-name">set_duration_override</span><span class="method-args">(duration)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+flag the new duration has been overridden by <a
+href="FFMpeg/MainOptions.html#M000095">FFMpeg::MainOptions.duration</a>,
+required for proper eta calculations
+</p>
+        </div>
+      </div>
 
       <div id="method-M000006" class="method-detail">
         <a name="M000006"></a>
@@ -183,6 +283,51 @@ href="FFMpeg/ClassMethods.html">ClassMethods</a> module
         <div class="method-heading">
           <a href="FFMpeg.src/M000006.html" target="Code" class="method-signature"
             onclick="popupCode('FFMpeg.src/M000006.html');return false;">
+          <span class="method-name">while_block</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the proc set by the <a
+href="FFMpeg.html#M000005">while_converting</a> block
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="FFMpeg.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('FFMpeg.src/M000005.html');return false;">
+          <span class="method-name">while_converting</span><span class="method-args">(&amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Allows you to specify a block that is called everytime <a
+href="FFMpeg.html">FFMpeg</a> spits out something on the command line
+</p>
+<pre>
+ convert &quot;file1.ext&quot;, :to =&gt; &quot;file2.ext&quot; do
+   while_converting do
+     puts current_eta
+   end
+ end
+</pre>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="FFMpeg.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('FFMpeg.src/M000013.html');return false;">
           <span class="method-name">convert</span><span class="method-args">(from_file, to_file = {}) {|if block_given?| ...}</span>
           </a>
         </div>
@@ -201,12 +346,12 @@ Sets up an FFmpegCommand for converting files:
         </div>
       </div>
 
-      <div id="method-M000007" class="method-detail">
-        <a name="M000007"></a>
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
 
         <div class="method-heading">
-          <a href="FFMpeg.src/M000007.html" target="Code" class="method-signature"
-            onclick="popupCode('FFMpeg.src/M000007.html');return false;">
+          <a href="FFMpeg.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('FFMpeg.src/M000014.html');return false;">
           <span class="method-name">ffmpeg_path</span><span class="method-args">(path)</span>
           </a>
         </div>
@@ -218,12 +363,12 @@ Explicitly set ffmpeg path
         </div>
       </div>
 
-      <div id="method-M000008" class="method-detail">
-        <a name="M000008"></a>
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
 
         <div class="method-heading">
-          <a href="FFMpeg.src/M000008.html" target="Code" class="method-signature"
-            onclick="popupCode('FFMpeg.src/M000008.html');return false;">
+          <a href="FFMpeg.src/M000015.html" target="Code" class="method-signature"
+            onclick="popupCode('FFMpeg.src/M000015.html');return false;">
           <span class="method-name">run</span><span class="method-args">()</span>
           </a>
         </div>

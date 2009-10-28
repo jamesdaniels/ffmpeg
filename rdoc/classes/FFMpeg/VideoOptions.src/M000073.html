@@ -5,14 +5,14 @@
 
 <html>
 <head>
-  <title>new_video (FFMpeg::VideoOptions)</title>
+  <title>crop_left (FFMpeg::VideoOptions)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_options.rb, line 193</span>
-    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_video</span>
-      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;-newvideo&quot;</span>
+  <pre><span class="ruby-comment cmt"># File lib/ffmpeg/video_options.rb, line 99</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">crop_left</span>(<span class="ruby-identifier">size</span>)
+      <span class="ruby-constant">FFMpegCommand</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-cropleft #{size}&quot;</span>
     <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>

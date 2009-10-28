@@ -5,14 +5,15 @@
 
 <html>
 <head>
-  <title>ffmpeg_path (FFMpeg)</title>
+  <title>log_output (FFMpeg)</title>
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
 </head>
 <body class="standalone-code">
-  <pre><span class="ruby-comment cmt"># File lib/ffmpeg.rb, line 63</span>
-  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ffmpeg_path</span>(<span class="ruby-identifier">path</span>)
-    <span class="ruby-ivar">@@ffmpeg_path</span> = <span class="ruby-identifier">path</span>
-  <span class="ruby-keyword kw">end</span></pre>
+  <pre><span class="ruby-comment cmt"># File lib/ffmpeg.rb, line 50</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_output</span>(<span class="ruby-identifier">output</span>)
+      <span class="ruby-ivar">@output</span> <span class="ruby-operator">||=</span> []
+      <span class="ruby-ivar">@output</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>, <span class="ruby-identifier">output</span>]
+    <span class="ruby-keyword kw">end</span></pre>
 </body>
 </html>
