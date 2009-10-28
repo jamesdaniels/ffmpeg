@@ -19,6 +19,39 @@ module FFMpeg
   class FFmpegError < Exception
   end
   
+  class << self
+    
+    #
+    # while_converting block
+    #
+    def while_converting(&block)
+      @while_block = block
+    end
+    
+    #
+    # returns the proc set by the while_converting block  
+    #
+    def while_block
+      @while_block || nil
+    end
+    
+    #
+    # logs command line output for review
+    #
+    def log_output(output)
+      @output ||= []
+      @output << output
+    end
+    
+    #
+    # returns the command line log 
+    #
+    def log
+      @output || []
+    end
+    
+  end
+  
   #
   # When mixed into a class, extend  
   # it with the ClassMethods module
@@ -82,6 +115,12 @@ module FFMpeg
   
   private
   
+  def while_converting(&block)
+    FFMpeg.while_converting do
+      yield
+    end
+  end
+  
   def build_output_file_name(from_file, to_file)
     return if to_file.nil?
     if FileExtensions::EXT.include?(to_file.to_s)
@@ -117,10 +156,10 @@ module FFMpeg
   # Executes FFmpeg with the specified command
   #
   def execute_command(cmd)
-    lines = []
     IO.popen("#{cmd} 2>&1") do |pipe|
       pipe.each("\r") do |line|
-        lines << line
+        FFMpeg.log_output line
+        FFMpeg.while_block.call if !!FFMpeg.while_block
       end
     end
     raise FFmpegError, "FFmpeg command (#{cmd}) failed" if $? != 0

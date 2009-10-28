@@ -31,6 +31,16 @@ describe "FFMpeg" do
     FFMpegCommand.command("ffmpeg").should eql("ffmpeg -i #{@from_file}")
   end
   
+  it "should execute the while converting block" do
+    @number_of_lines = 0
+    convert File.join(Dir.pwd, 'spec/files/terminal.mpg'), :to => :flv do
+      overwrite_existing_file
+      while_converting do
+        FFMpeg.log.size.should eql(@number_of_lines += 1)
+      end
+    end.run
+  end
+  
   it "should raise an exception when given a bad command" do
     convert '/', :to => '/asdf'
     
