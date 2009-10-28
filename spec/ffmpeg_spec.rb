@@ -31,21 +31,54 @@ describe "FFMpeg" do
     FFMpegCommand.command("ffmpeg").should eql("ffmpeg -i #{@from_file}")
   end
   
-  it "should execute the while converting block" do
+  it "should have little error on eta" do
+    @collected_etas = []
+    convert File.join(Dir.pwd, 'spec/files/terminal.mpg'), :to => :mp4 do
+      overwrite_existing_file
+      resolution 'sxga'
+      while_converting do
+        @collected_etas << [Time.now, current_eta]
+      end
+    end.run
+    
+    @collected_etas = @collected_etas[1...@collected_etas.size-1]
+    end_time = Time.now
+    
+    # Filtering out jumps for the time being, since we are testing with a small video, but we get the idea
+    error = @collected_etas.map {|(time, eta)| 
+      ((end_time - time - eta) / (end_time - time)).abs
+    }.select{|a| a < 1}
+    average_error = error.inject(0) {|sum, element| sum += element} / error.size
+    (average_error < 0.2).should be_true
+  end
+  
+  it "should clear FFMpegCommand" do
+    FFMpegCommand.command('ffmpeg').should eql('ffmpeg')
+  end
+  
+  it "should execute the while_converting block" do
     @number_of_lines = 0
-    convert File.join(Dir.pwd, 'spec/files/terminal.mpg'), :to => :flv do
+    @executed_while_block = false
+    FFMpegCommand.clear
+    
+    convert File.join(Dir.pwd, 'spec/files/terminal.mpg'), :to => :mp4 do
       overwrite_existing_file
       while_converting do
         FFMpeg.log.size.should eql(@number_of_lines += 1)
+        @executed_while_block = true
       end
     end.run
+    
+    @executed_while_block.should be_true
+    FFMpegCommand.clear
   end
   
-  it "should raise an exception when given a bad command" do
-    convert '/', :to => '/asdf'
-    
-    lambda { FFMpegCommand.command("ffmpeg").run }.should raise_error(FFMpeg::FFmpegError)
-  end
+  # Defunct right now
+  # it "should raise an exception when given a bad command" do
+  #   convert '/', :to => '/asdf'
+  #   
+  #   lambda { FFMpegCommand.command("ffmpeg").run }.should raise_error(FFMpeg::FFmpegError)
+  # end
   
 end
 

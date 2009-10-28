@@ -27,6 +27,7 @@ module FFMpeg
     #   duration "00:10:00"
     #
     def duration(duration)
+      FFMpeg.set_duration_override duration
       FFMpegCommand << "-t #{duration}"
     end
     

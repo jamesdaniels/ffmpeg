@@ -7,6 +7,7 @@ require 'ffmpeg/audio_options'
 require 'ffmpeg/ffmpeg_command'
 require 'ffmpeg/helper_methods'
 require 'ffmpeg/meta_data'
+require 'ffmpeg/output_reading'
 
 module FFMpeg
   include HelperMethods
@@ -15,6 +16,7 @@ module FFMpeg
   include VideoAdvancedOptions
   include AudioOptions
   include MetaData
+  include OutputReading
   
   class FFmpegError < Exception
   end
@@ -29,25 +31,47 @@ module FFMpeg
     end
     
     #
-    # returns the proc set by the while_converting block  
+    # Returns the proc set by the while_converting block  
     #
     def while_block
       @while_block || nil
     end
     
     #
-    # logs command line output for review
+    # Log command line output for review
     #
     def log_output(output)
       @output ||= []
-      @output << output
+      @output << [Time.now, output]
     end
     
     #
-    # returns the command line log 
+    # Returns the command line log 
     #
     def log
       @output || []
+    end
+    
+    #
+    # Clear the command line log
+    #
+    def clear_log
+      @output = []
+    end
+    
+    #
+    # flag the new duration has been overridden by FFMpeg::MainOptions.duration, 
+    # required for proper eta calculations
+    #
+    def set_duration_override(duration)
+      @duration = colon_time_to_seconds(duration)
+    end
+    
+    #
+    # The new duration put forth by set_duration_override
+    #
+    def new_duration
+      @duration
     end
     
   end
@@ -115,12 +139,25 @@ module FFMpeg
   
   private
   
+  #
+  # Allows you to specify a block that is called everytime FFMpeg spits out something on the
+  # command line
+  #
+  #  convert "file1.ext", :to => "file2.ext" do
+  #    while_converting do
+  #      puts current_eta
+  #    end
+  #  end
+  #
   def while_converting(&block)
     FFMpeg.while_converting do
       yield
     end
   end
   
+  #
+  # Returns the file name to output to
+  #
   def build_output_file_name(from_file, to_file)
     return if to_file.nil?
     if FileExtensions::EXT.include?(to_file.to_s)
@@ -153,7 +190,8 @@ module FFMpeg
   end
   
   #
-  # Executes FFmpeg with the specified command
+  # Executes FFmpeg with the specified command. Output is stored in the log
+  # and the while_converting block is call, if it has been set.
   #
   def execute_command(cmd)
     IO.popen("#{cmd} 2>&1") do |pipe|
@@ -162,6 +200,9 @@ module FFMpeg
         FFMpeg.while_block.call if !!FFMpeg.while_block
       end
     end
+    FFMpegCommand.clear
+    FFMpeg.clear_log
+    # Dufunct right now, need to take a look later
     raise FFmpegError, "FFmpeg command (#{cmd}) failed" if $? != 0
   end
 end
